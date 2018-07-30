@@ -1,0 +1,7 @@
+.sidebar-contacts {
+  background-color: #fff;
+  height: calc(100vh - 108px);
+  margin-top: -1px;
+  overflow: auto;
+  z-index: 1;
+}
