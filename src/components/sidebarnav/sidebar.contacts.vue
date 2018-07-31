@@ -1,146 +1,18 @@
 <template>
   <div class="sidebar-contacts">
-    <div class="contact">
+    <div class="contact" v-for="contact in contacts" :key="contact.id">
       <div class="avatar">
         <div>
-          <img src="@/assets/images/avatar-1.jpg" />
+          <img :src="getAvatar(contact.avatar)">
         </div>
       </div>
       <div class="info">
           <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
+            <h1>{{contact.name}}</h1>
+            <span>{{contact.lastTime}}</span>
           </div>
           <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-2.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-3.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-4.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-5.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-6.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-7.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-8.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
-          </div>
-      </div>
-    </div>
-    <div class="contact">
-      <div class="avatar">
-        <div>
-          <img src="@/assets/images/avatar-9.jpg" />
-        </div>
-      </div>
-      <div class="info">
-          <div class="top-info">
-            <h1>Lorem Ipsum</h1>
-            <span>22:37</span>
-          </div>
-          <div class="last-msg">
-            <span>Some One: Dolor sit amet consectetur ...</span>
+            <span>{{contact.lastMsg}}</span>
           </div>
       </div>
     </div>
@@ -148,8 +20,32 @@
 </template>
 
 <script>
+import { contacts } from '@/resources/contacts.js'
+
 export default {
-  name: 'sidebarcontacts'
+  // props: ['contacts'],
+  name: 'sidebarcontacts',
+  data () {
+    return {
+      contacts
+    }
+  },
+  methods: {
+    getAvatar (avatar) {
+      return { image: require('@/assets/icons/avatar-1.jpg') }//`@~/assets/images/${avatar}`
+    },
+    greet: function (event) {
+      // `this` inside methods points to the Vue instance
+      alert('Hello ' + this.name + '!')
+      // `event` is the native DOM event
+      if (event) {
+        alert(event.target.tagName)
+      }
+    }
+  },
+  mounted () {
+    this.contacts = contacts
+  }
 }
 </script>
 
